@@ -7,13 +7,23 @@ This project aims to provide easy to dive into templates for starting various lo
 Copy content of desired sample folder etc "sample4_maid64_eventSystem" to the root folder of your project. 
 If this was your project folder. Copy all content of sample4_maid64_eventSystem and paste it in inLove2d and replace everything, if there are existing files.
 
-# Getting started.
-Install VSCode  
+## Sample Overview
+- UtillityFunctions
+  - Helper functions, etc: colorpalettes
+- sample2_eventSystem
+  - base setup with eventSystem where you can publish/notify events and from desired place subscibe to event to trigger a action
+- sample3_maid64_textbasic
+  - maid64 scaling for pixel art projects, font is set to look nice to avoid blurred letters, base for text input, work well for textbased game/writing games
+- sample4_maid64_eventSystem
+  - maid64 scaling for pixel art projects, font is set to look nice to avoid blurred letters,, base setup with eventSystem where you can publish/notify events and from desired place subscibe to event to trigger a action
+
+# How to setup Love2D in VSCode (Visual Studio Code) on Windows systems
+Install [VSCode](https://code.visualstudio.com/)  
 
 Install [LOVE2D](https://love2d.org/)  
 
-Make sure Love2d is added to the path:  
-### Add love2d to path
+Make sure Love2d is added to the path
+### Add love2d to path for windows
 windows key + env  
 
 select path -> edit -> new -> add the love folder C:\Program Files\LOVE  
@@ -61,19 +71,12 @@ end
 ```
 
 
-## Package dependencies
+## Package dependencies/references in this projects
 scaling:  
 [maid64](https://github.com/adekto/maid64)
 
+If you have contributions, please make a pull request ma dudes :)
 
-# Sample Overview
-- UtillityFunctions
-  - Helper functions, etc: colorpalettes
-- sample2_eventSystem
-  - base setup with eventSystem where you can publish/notify events and from desired place subscibe to event to trigger a action
-- sample3_maid64_textbasic
-  - maid64 scaling for pixel art projects, font is set to look nice to avoid blurred letters, base for text input, work well for textbased game/writing games
-- sample4_maid64_eventSystem
-  - maid64 scaling for pixel art projects, font is set to look nice to avoid blurred letters,, base setup with eventSystem where you can publish/notify events and from desired place subscibe to event to trigger a action
+
 
 
