@@ -1,7 +1,7 @@
 # inLove2d
 ## Templates for love2d projects
 
-This project aims to provide easy to dive into tempaltes for starting various love2d projects wihtout having to reinvent the deep plate :D  
+This project aims to provide easy to dive into templates for starting various love2d projects wihtout having to reinvent the deep plate :D  
 
 Under the samlples folder you find various structures to use, you should copy the content of the subfolder baseline you want "sample1", "sample2" and copy it to your base project. This means in this project if would be placing the files at the root folder.
 
