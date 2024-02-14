@@ -1,17 +1,29 @@
 # inLove2d
 ## Templates for love2d projects
 
-This project aims to provide easy to dive into tempaltes for starting various love2d projects wihtout having to reinvent the deep plate :D  
+This project aims to provide easy to dive into templates for starting various love2d projects wihtout having to reinvent the deep plate :D  
 
-Under the samlples folder you find various structures to use, you should copy the content of the subfolder baseline you want "sample1", "sample2" and copy it to your base project. This means in this project if would be placing the files at the root folder.
+## Quick start
+Copy content of desired sample folder etc "sample4_maid64_eventSystem" to the root folder of your project. 
+If this was your project folder. Copy all content of sample4_maid64_eventSystem and paste it in inLove2d and replace everything, if there are existing files.
 
-# Getting started.
-Install VSCode  
+## Sample Overview
+- UtillityFunctions
+  - Helper functions, etc: colorpalettes
+- sample2_eventSystem
+  - base setup with eventSystem where you can publish/notify events and from desired place subscibe to event to trigger a action
+- sample3_maid64_textbasic
+  - maid64 scaling for pixel art projects, font is set to look nice to avoid blurred letters, base for text input, work well for textbased game/writing games
+- sample4_maid64_eventSystem
+  - maid64 scaling for pixel art projects, font is set to look nice to avoid blurred letters,, base setup with eventSystem where you can publish/notify events and from desired place subscibe to event to trigger a action
+
+# How to setup Love2D in VSCode (Visual Studio Code) on Windows systems
+Install [VSCode](https://code.visualstudio.com/)  
 
 Install [LOVE2D](https://love2d.org/)  
 
-Make sure Love2d is added to the path:  
-### Add love2d to path
+Make sure Love2d is added to the path
+### Add love2d to path for windows
 windows key + env  
 
 select path -> edit -> new -> add the love folder C:\Program Files\LOVE  
@@ -59,9 +71,12 @@ end
 ```
 
 
-## Package dependencies
+## Package dependencies/references in this projects
 scaling:  
 [maid64](https://github.com/adekto/maid64)
-## 
+
+If you have contributions, please make a pull request ma dudes :)
+
+
 
 
