@@ -3,16 +3,18 @@ if arg[2] == "debug" then
 end
 local maid64 = require "maid64"
 local gameManager = require "gameManager"
+local sceenWidth = 320
+local screnHeight = 240
 
 
 function love.load()
     x = 0
     --optional settings for window
-    love.window.setMode(800, 600, {resizable=true, vsync=false, minwidth=200, minheight=200})
+    love.window.setMode(sceenWidth*3, screnHeight*3, {resizable=true, vsync=false, minwidth=200, minheight=200})
     love.graphics.setDefaultFilter("nearest", "nearest")
     --initilizing maid64 for use and set to 64x64 mode 
     --can take 2 parameters x and y if needed for example maid64.setup(64,32)
-    maid64.setup(320, 240)
+    maid64.setup(sceenWidth, screnHeight)
 
     --font = love.graphics.newFont('fonts/pico-8-mono.ttf', 12)
     font = love.graphics.newFont('fonts/PressStart2P-Regular.ttf', 8)
@@ -36,6 +38,8 @@ function love.draw()
     
     --can also draw shapes and get mouse position
     love.graphics.circle("fill", maid64.mouse.getX(),  maid64.mouse.getY(), 2)
+    --draw x,y cordinates on scren, nice for dev.
+    love.graphics.print(maid64.mouse.getX() .. ',' ..  maid64.mouse.getY(), sceenWidth-(8*7),1)
     gameManager.draw()
 
 
