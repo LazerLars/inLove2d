@@ -23,12 +23,17 @@ function love.load()
     --font:setFilter('nearest', 'nearest')
 
     love.graphics.setFont(font)
+
+    spr_inLove2d = maid64.newImage("inLove2d_64x64.png")
+
+    rotate = 0
     gameManager.load()
    
 end
 
 function love.update(dt)
     x = x + 1
+    rotate = rotate + dt
     --print('test' .. x)
     gameManager.update(dt)
 end
@@ -44,6 +49,7 @@ function love.draw()
     love.graphics.print(maid64.mouse.getX() .. ',' ..  maid64.mouse.getY(), sceenWidth-(8*7),1)
     gameManager.draw()
 
+    love.graphics.draw(spr_inLove2d, sceenWidth/2, screenHeight/2, rotate, 3, 3, spr_inLove2d:getWidth()/2, spr_inLove2d:getHeight()/2)
 
     maid64.finish()--finishes the maid64 process
 end
