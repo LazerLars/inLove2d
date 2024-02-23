@@ -25,7 +25,7 @@ function player.update(dt)
     player.counter = player.counter + 1
 
     if player.counter % 50 == 0 then
-        event.publish('playerCollision')
+        event.publishEvent('playerCollision')
     end
 
     

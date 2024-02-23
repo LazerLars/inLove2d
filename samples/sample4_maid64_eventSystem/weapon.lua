@@ -42,8 +42,8 @@ end
 
 function weapon.load()
     -- Weapon initialization logic
-
-    spr_bullet = love.graphics.newImage('yourSpriteFolder/bulletsFolder/yourPulletImg.png')
+    weapon.bulletList = {}
+    --spr_bullet = love.graphics.newImage('yourSpriteFolder/bulletsFolder/yourPulletImg.png')
 end
 
 function weapon.update(dt)

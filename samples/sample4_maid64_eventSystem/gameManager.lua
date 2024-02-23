@@ -18,7 +18,7 @@ function gameManager.load()
     --it works even when its placed in the load(), if you move this to the etc. update() function 
     --is can be called 900-1000 times for each published event, which is not the intension..
     --so keep events subscribtion in the load function 
-    event.subscribe("increaseScore", function(score)
+    event.subscribeEvent("increaseScore", function(score)
         gameManager.incrementScore(score)
         
     end)
