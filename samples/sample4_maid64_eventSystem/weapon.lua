@@ -33,9 +33,6 @@ end
 
 function weapon.moveBullet(dt)
     for bulletIndex, bullet in ipairs(weapon.bulletList) do
-        local dx = math.cos(bullet.angleRadians) * bullet.speed * dt -- Multiply by dt for frame independence
-        local dy = math.sin(bullet.angleRadians) * bullet.speed * dt
-
         bullet.x = bullet.x * bullet.speed * dt
         bullet.y = bullet.y * bullet.speed * dt
 
