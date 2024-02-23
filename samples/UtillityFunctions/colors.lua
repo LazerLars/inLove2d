@@ -1,4 +1,15 @@
 -- class which different color palettes
+--
+--@usage
+--at beginning of file were you want to use it
+-- local colors = require "UtillityFunctions.colors"
+--
+--@usage in the love.draw() function
+--colors.ColorPalette_pico8Micro('yellow') -- change text color to yellow
+--love.graphics.print('my text', 50,20)
+--colors.ColorPalette_pico8Micro('white') -- reset color to default text color
+
+local colors = {}
 
 -------------------------------------------
 -------------------------------------------
@@ -13,7 +24,7 @@
 -- @usage ColorPalette_KirkokazeGameBoyPalette('blue') -- Sets the color to red.
 --
 -- https://lospec.com/palette-list/kirokaze-gameboy
-function ColorPalette_KirkokazeGameBoyPalette(color)
+function colors.ColorPalette_KirkokazeGameBoyPalette(color)
 
 	local selectedColor = love.graphics.setColor(255/255, 0/255, 77/255)
 	if color == 'purple' or color == 1 then
@@ -44,7 +55,7 @@ end
 -- @usage ColorPalette_sobeachy8('blue') -- Sets the color to red.
 --
 -- https://lospec.com/palette-list/sobeachy8
-function ColorPalette_sobeachy8(color)
+function colors.ColorPalette_sobeachy8(color)
 	local selectedColor = love.graphics.setColor(229/255, 83/255, 136/255)
 
     if color == 'pink' or color == 1 then
@@ -75,7 +86,7 @@ end
 -- @usage ColorPalette_fairyDust8('blue') -- Sets the color to red.
 --
 -- https://lospec.com/palette-list/fairydust-8
-function ColorPalette_fairyDust8(color)
+function colors.ColorPalette_fairyDust8(color)
 	local selectedColor = love.graphics.setColor(240/255, 218/255, 177/255)
     if color == 'yellow' or color == 1 then
         selectedColor = love.graphics.setColor(240/255, 218/255, 177/255) -- #f0dab1
@@ -105,7 +116,7 @@ end
 -- @usage ColorPalette_sobeachy8('blue') -- Sets the color to red.
 --
 -- https://lospec.com/palette-list/clement-8
-function ColorPalette_clement8(color)
+function colors.ColorPalette_clement8(color)
 	local selectedColor = love.graphics.setColor(0, 8/255, 113/255)   
     if color == 'dark-blue' or color == 1 then
         selectedColor = love.graphics.setColor(0, 8/255, 113/255)        -- #000871
@@ -134,7 +145,7 @@ end
 -- @usage ColorPalette_pico8Micro('blue') -- Sets the color to red.
 --
 --https://lospec.com/palette-list/pico-micro  
-function ColorPalette_pico8Micro(color)
+function colors.ColorPalette_pico8Micro(color)
 	local selectedColor = love.graphics.setColor(77/255, 142/255, 217/255) 
     if color == 'black' or color == 1 then
         selectedColor = love.graphics.setColor(0, 0, 0)             -- #000000
@@ -163,7 +174,7 @@ end
 -- @usage ColorPalette_sobeachy8('blue') -- Sets the color to red.
 --
 -- https://lospec.com/palette-list/expandeddreamland
-function ColorPalette_expandeddreamland(color)
+function colors.ColorPalette_expandeddreamland(color)
 	local selectedColor = love.graphics.setColor(247/255, 190/255, 247/255) 
     if color == 'pink' or color == 1 then
         selectedColor = love.graphics.setColor(247/255, 190/255, 247/255)  -- #f7bef7
@@ -196,7 +207,7 @@ end
 -- @usage ColorPalette_Pico8('red') -- Sets the color to red.
 --
 --https://lospec.com/palette-list/pico-8
-function ColorPalette_Pico8(color)
+function colors.ColorPalette_Pico8(color)
 	local selectedColor = love.graphics.setColor(0/255, 0/255, 0/255)
 	if color == 'black' or color == 1 then
 		selectedColor = love.graphics.setColor(255/255, 0/255, 77/255)
@@ -235,10 +246,11 @@ function ColorPalette_Pico8(color)
 end
 
 
+return colors
 
 
-ColorPalette_Pico8(1)
+--colors.ColorPalette_Pico8(1)
 
-ColorPalette_KirkokazeGameBoyPalette(2)
+--colors.ColorPalette_KirkokazeGameBoyPalette(2)
 
 --Palettes not added yet
