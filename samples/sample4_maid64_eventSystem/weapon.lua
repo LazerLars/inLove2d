@@ -24,7 +24,7 @@ end
 
 function weapon.removeBulletOutOfScreen(bullet, bulletIndex)
     if bullet.x < 0 or bullet.x > sceenWidth or
-           bullet.y < 0 or bullet.y > screnHeight then
+           bullet.y < 0 or bullet.y > screenHeight then
             --table.remove(weapon.bulletList, index)
             weapon.removeBullet(bulletIndex)
             print('removing bullet, out of bounds. bulletIndex: ' .. bulletIndex)

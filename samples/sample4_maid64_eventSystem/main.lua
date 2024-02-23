@@ -4,7 +4,7 @@ end
 local maid64 = require "maid64"
 local gameManager = require "gameManager"
 sceenWidth = 320
-screnHeight = 240
+screenHeight = 240
 local scaleMuliplier = 3
 mouseX, mouseY = 0,0
 
@@ -12,11 +12,11 @@ mouseX, mouseY = 0,0
 function love.load()
     x = 0
     --optional settings for window
-    love.window.setMode(sceenWidth*scaleMuliplier, screnHeight*scaleMuliplier, {resizable=true, vsync=false, minwidth=200, minheight=200})
+    love.window.setMode(sceenWidth*scaleMuliplier, screenHeight*scaleMuliplier, {resizable=true, vsync=false, minwidth=200, minheight=200})
     love.graphics.setDefaultFilter("nearest", "nearest")
     --initilizing maid64 for use and set to 64x64 mode 
     --can take 2 parameters x and y if needed for example maid64.setup(64,32)
-    maid64.setup(sceenWidth, screnHeight)
+    maid64.setup(sceenWidth, screenHeight)
 
     --font = love.graphics.newFont('fonts/pico-8-mono.ttf', 12)
     font = love.graphics.newFont('fonts/PressStart2P-Regular.ttf', 8)
