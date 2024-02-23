@@ -1,5 +1,7 @@
 # inLove2d
-## Templates for love2d projects
+![inLove2D logo](/img/documentation/inLove2d_160x160.png)
+
+## Templates for love2d project
 
 This project aims to provide easy to dive into templates for starting various love2d projects wihtout having to reinvent the deep plate :D  
 
@@ -81,5 +83,4 @@ scaling:
 If you have contributions, please make a pull request ma dudes :)
 
 
-
-
+![inLove2D logo](/img/documentation/inLove2d_160x160.png)
