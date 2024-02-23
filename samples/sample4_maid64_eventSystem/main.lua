@@ -6,8 +6,9 @@ local gameManager = require "gameManager"
 sceenWidth = 320
 screnHeight = 240
 local scaleMuliplier = 3
+mouseX, mouseY = 0,0
 
-
+--everything revolving x = ... can be deleted. its just for test/sample purposes
 function love.load()
     x = 0
     --optional settings for window
