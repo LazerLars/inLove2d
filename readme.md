@@ -5,7 +5,10 @@ This project aims to provide easy to dive into templates for starting various lo
 
 ## Quick start
 Copy content of desired sample folder etc "sample4_maid64_eventSystem" to the root folder of your project. 
-If this was your project folder. Copy all content of sample4_maid64_eventSystem and paste it in inLove2d and replace everything, if there are existing files.
+If this was your project folder. Copy all content of sample4_maid64_eventSystem and paste it in inLove2d and replace everything, if there are existing files.  
+
+FYI:  
+sample4_maid64_eventSystem is the most mature setup
 
 ## Sample Overview
 - UtillityFunctions
