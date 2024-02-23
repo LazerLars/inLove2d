@@ -44,9 +44,15 @@ function gameManager.spawnEnemy(x, y)
     enemy.create(x, y)
 end
 
-function gameManager.incrementScore()
-    gameManager.score = gameManager.score + 1
-    print("Score: " .. gameManager.score)
+function gameManager.incrementScore(scoreIncrement)
+    --if no scoreIncrement is added, then we just want to add 1
+    if scoreIncrement == nill then
+        gameManager.score = gameManager.score + 1
+    else
+        gameManager.score = gameManager.score + scoreIncrement
+    end
+    
+    --print("Score: " .. gameManager.score)
 end
 
 return gameManager
