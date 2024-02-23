@@ -24,7 +24,7 @@ function love.load()
     love.graphics.setFont(font)
     
     -- create test sprite
-    maid = maid64.newImage("maid64.png")
+    spr_inLove2d = maid64.newImage("maid64.png")
 
     -- enable key repeat so backspace can be held down to trigger love.keypressed multiple times.
     love.keyboard.setKeyRepeat(true)

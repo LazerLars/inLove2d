@@ -7,15 +7,17 @@ local utf8 = require("utf8")
 local textInput = ""
 local text = ""
 local oldText = ""
-
+sceenWidth = 320
+screenHeight = 240
+local scaleMuliplier = 3
 
 function love.load()
     --optional settings for window
-    love.window.setMode(800, 600, {resizable=true, vsync=false, minwidth=200, minheight=200})
+    love.window.setMode(sceenWidth*scaleMuliplier, screenHeight*scaleMuliplier, {resizable=true, vsync=false, minwidth=200, minheight=200})
     love.graphics.setDefaultFilter("nearest", "nearest")
     --initilizing maid64 for use and set to 64x64 mode 
     --can take 2 parameters x and y if needed for example maid64.setup(64,32)
-    maid64.setup(320, 240)
+    maid64.setup(sceenWidth, screenHeight)
 
     --font = love.graphics.newFont('fonts/pico-8-mono.ttf', 12)
     font = love.graphics.newFont('fonts/PressStart2P-Regular.ttf', 8)
@@ -24,14 +26,17 @@ function love.load()
     love.graphics.setFont(font)
     
     -- create test sprite
-    maid = maid64.newImage("maid64.png")
+    --maid = maid64.newImage("maid64.png")
+    spr_inLove2d = maid64.newImage("inLove2d_64x64.png")
+
+    rotate = 0
 
     -- enable key repeat so backspace can be held down to trigger love.keypressed multiple times.
     love.keyboard.setKeyRepeat(true)
    
 end
 function love.update(dt)
-
+    rotate = rotate + dt
 end
 function love.draw()
     
@@ -45,6 +50,9 @@ function love.draw()
     love.graphics.setFont(font)
     love.graphics.print('' .. oldText, 0, 226-14-14)
     love.graphics.print('' .. text, 0, 226-14)
+
+    --love.graphics.draw(spr_inLove2d,sceenWidth/2,screenHeight/2,rotate,3,3,32,32)
+    love.graphics.draw(spr_inLove2d, sceenWidth/2, screenHeight/2, rotate, 3, 3, spr_inLove2d:getWidth()/2, spr_inLove2d:getHeight()/2)
 
     maid64.finish()--finishes the maid64 process
 end

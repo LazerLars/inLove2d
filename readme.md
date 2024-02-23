@@ -1,11 +1,16 @@
 # inLove2d
-## Templates for love2d projects
+![inLove2D logo](/img/documentation/inLove2d_160x160.png)
+
+## Templates for love2d project
 
 This project aims to provide easy to dive into templates for starting various love2d projects wihtout having to reinvent the deep plate :D  
 
 ## Quick start
 Copy content of desired sample folder etc "sample4_maid64_eventSystem" to the root folder of your project. 
-If this was your project folder. Copy all content of sample4_maid64_eventSystem and paste it in inLove2d and replace everything, if there are existing files.
+If this was your project folder. Copy all content of sample4_maid64_eventSystem and paste it in inLove2d and replace everything, if there are existing files.  
+
+FYI:  
+sample4_maid64_eventSystem is the most mature setup
 
 ## Sample Overview
 - UtillityFunctions
@@ -78,5 +83,4 @@ scaling:
 If you have contributions, please make a pull request ma dudes :)
 
 
-
-
+![inLove2D logo](/img/documentation/inLove2d_160x160.png)

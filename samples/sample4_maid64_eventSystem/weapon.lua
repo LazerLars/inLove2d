@@ -24,7 +24,7 @@ end
 
 function weapon.removeBulletOutOfScreen(bullet, bulletIndex)
     if bullet.x < 0 or bullet.x > sceenWidth or
-           bullet.y < 0 or bullet.y > screnHeight then
+           bullet.y < 0 or bullet.y > screenHeight then
             --table.remove(weapon.bulletList, index)
             weapon.removeBullet(bulletIndex)
             print('removing bullet, out of bounds. bulletIndex: ' .. bulletIndex)
@@ -33,9 +33,6 @@ end
 
 function weapon.moveBullet(dt)
     for bulletIndex, bullet in ipairs(weapon.bulletList) do
-        local dx = math.cos(bullet.angleRadians) * bullet.speed * dt -- Multiply by dt for frame independence
-        local dy = math.sin(bullet.angleRadians) * bullet.speed * dt
-
         bullet.x = bullet.x * bullet.speed * dt
         bullet.y = bullet.y * bullet.speed * dt
 
@@ -45,8 +42,8 @@ end
 
 function weapon.load()
     -- Weapon initialization logic
-
-    spr_bullet = love.graphics.newImage('yourSpriteFolder/bulletsFolder/yourPulletImg.png')
+    weapon.bulletList = {}
+    --spr_bullet = love.graphics.newImage('yourSpriteFolder/bulletsFolder/yourPulletImg.png')
 end
 
 function weapon.update(dt)
