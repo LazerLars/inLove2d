@@ -21,6 +21,7 @@ function love.load()
     circle.speed = 200
 end
 
+
 function love.update(dt)
     -- Get the current window size
     windowWidth, windowHeight = love.graphics.getDimensions()
@@ -42,6 +43,7 @@ function love.update(dt)
     mouse_y = math.floor(mouse_y)
     angle = math.atan2(mouse_y - circle.y, mouse_x - circle.x)
 end
+
 
 function love.draw()
     -- Get the current window size
