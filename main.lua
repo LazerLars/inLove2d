@@ -1,85 +1,94 @@
 if arg[2] == "debug" then
     require("lldebugger").start()
 end
-local maid64 = require "maid64"
-local utf8 = require("utf8")
 
-local textInput = ""
-local text = ""
-local oldText = ""
-sceenWidth = 320
-screenHeight = 240
-local scaleMuliplier = 3
-
+    -- recommended screen sizes
+---+--------------+-------------+------+-----+-----+-----+-----+-----+-----+-----+
+-- | scale factor | desktop res | 1    | 2   | 3   | 4   | 5   | 6   | 8   | 10  |
+-- +--------------+-------------+------+-----+-----+-----+-----+-----+-----+-----+
+-- | width        | 1920        | 1920 | 960 | 640 | 480 | 384 | 320 | 240 | 192 |
+-- | height       | 1080        | 1080 | 540 | 360 | 270 | 216 | 180 | 135 | 108 |
+-- +--------------+-------------+------+-----+-----+-----+-----+-----+-----+-----+
+local settings = {
+    fullscreen = false,
+    screenScaler = 3,
+    logicalWidth = 384,
+    logicalHeight = 216
+}
 function love.load()
-    --optional settings for window
-    love.window.setMode(sceenWidth*scaleMuliplier, screenHeight*scaleMuliplier, {resizable=true, vsync=false, minwidth=200, minheight=200})
-    love.graphics.setDefaultFilter("nearest", "nearest")
-    --initilizing maid64 for use and set to 64x64 mode 
-    --can take 2 parameters x and y if needed for example maid64.setup(64,32)
-    maid64.setup(sceenWidth, screenHeight)
 
-    --font = love.graphics.newFont('fonts/pico-8-mono.ttf', 12)
-    font = love.graphics.newFont('fonts/PressStart2P-Regular.ttf', 8)
-    --font:setFilter('nearest', 'nearest')
 
-    love.graphics.setFont(font)
     
-    -- create test sprite
-    --maid = maid64.newImage("maid64.png")
-    spr_inLove2d = maid64.newImage("inLove2d_64x64.png")
 
-    rotate = 0
+    -- Set up the window with resizable option
+    love.window.setMode(settings.logicalWidth, settings.logicalHeight, {resizable=true, vsync=0, minwidth=settings.logicalWidth*settings.screenScaler, minheight=settings.logicalHeight*settings.screenScaler})
+    font = love.graphics.newFont('fonts/m6x11.ttf', 16)
+    
+    love.graphics.setFont(font)
+    -- love.graphics.setDefaultFilter("nearest", "nearest")
 
-    -- enable key repeat so backspace can be held down to trigger love.keypressed multiple times.
-    love.keyboard.setKeyRepeat(true)
-   
+    circle = {}
+    circle.x = 100
+    circle.y = 100
+    circle.radius = 25
+    circle.speed = 200
 end
+
+
 function love.update(dt)
-    rotate = rotate + dt
+    -- Get the current window size
+    windowWidth, windowHeight = love.graphics.getDimensions()
+
+    -- Calculate the scaling factor
+    scaleX = windowWidth / logicalWidth
+    scaleY = windowHeight / logicalHeight
+    scale = math.min(scaleX, scaleY)
+
+    -- Calculate the offsets to center the game
+    offsetX = (windowWidth - logicalWidth * scale) / 2
+    offsetY = (windowHeight - logicalHeight * scale) / 2
+
+    -- Adjust mouse coordinates
+    mouse_x, mouse_y = love.mouse.getPosition()
+    mouse_x = (mouse_x - offsetX) / scale
+    mouse_y = (mouse_y - offsetY) / scale
+    mouse_x = math.floor(mouse_x)
+    mouse_y = math.floor(mouse_y)
+    angle = math.atan2(mouse_y - circle.y, mouse_x - circle.x)
 end
+
+
 function love.draw()
-    
-    maid64.start()--starts the maid64 process
+    -- Get the current window size
+    windowWidth, windowHeight = love.graphics.getDimensions()
 
-    --draw images here
-    
-    --can also draw shapes and get mouse position
-    love.graphics.circle("fill", maid64.mouse.getX(),  maid64.mouse.getY(), 2)
-    love.graphics.print('> ' .. textInput, 0, 226)
-    love.graphics.setFont(font)
-    love.graphics.print('' .. oldText, 0, 226-14-14)
-    love.graphics.print('' .. text, 0, 226-14)
+    -- Calculate the scaling factor
+    scaleX = windowWidth / logicalWidth
+    scaleY = windowHeight / logicalHeight
+    scale = math.min(scaleX, scaleY)
 
-    --love.graphics.draw(spr_inLove2d,sceenWidth/2,screenHeight/2,rotate,3,3,32,32)
-    love.graphics.draw(spr_inLove2d, sceenWidth/2, screenHeight/2, rotate, 3, 3, spr_inLove2d:getWidth()/2, spr_inLove2d:getHeight()/2)
+    -- Calculate the offsets to center the game
+    offsetX = (windowWidth - logicalWidth * scale) / 2
+    offsetY = (windowHeight - logicalHeight * scale) / 2
 
-    maid64.finish()--finishes the maid64 process
-end
+    -- Apply scaling and translation
+    love.graphics.push()
+    love.graphics.translate(offsetX, offsetY)
+    love.graphics.scale(scale, scale)
 
-function love.resize(w, h)
-    -- this is used to resize the screen correctly
-    maid64.resize(w, h)
-end
+    -- Draw the game elements
+    love.graphics.setColor(1, 1, 1)
+    love.graphics.circle("fill", circle.x, circle.y, circle.radius)
+    love.graphics.setColor(0.2, 0.8, 0.2)
+    love.graphics.print("angle: " .. angle, 1, 1)
+    love.graphics.print("mouse: " .. mouse_x .. "," .. mouse_y, 1, 16)
 
-function love.textinput(t)
-    textInput = textInput .. t
-end
+    -- Draw vertical line
+    love.graphics.line(circle.x, circle.y, mouse_x, circle.y)
+    -- Draw horizontal line
+    love.graphics.line(circle.x, circle.y, circle.x, mouse_y)
+    -- Draw kune tiwards the mouse
+    love.graphics.line(circle.x, circle.y, mouse_x, mouse_y)
 
-function love.keypressed(key)
-    if key == "backspace" then
-        -- get the byte offset to the last UTF-8 character in the string.
-        local byteoffset = utf8.offset(textInput, -1)
-
-        if byteoffset then
-            -- remove the last UTF-8 character.
-            -- string.sub operates on bytes rather than UTF-8 characters, so we couldn't do string.sub(text, 1, -2).
-            textInput = string.sub(textInput, 1, byteoffset - 1)
-        end
-    end
-    if key == "return" then
-        oldText = text
-        text = textInput
-        textInput = ""
-    end
+    love.graphics.pop()
 end

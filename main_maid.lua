@@ -2,7 +2,11 @@ if arg[2] == "debug" then
     require("lldebugger").start()
 end
 local maid64 = require "maid64"
-local gameManager = require "gameManager"
+local utf8 = require("utf8")
+
+local textInput = ""
+local text = ""
+local oldText = ""
 -- recommended screen sizes
 ---+--------------+-------------+------+-----+-----+-----+-----+-----+-----+-----+
 -- | scale factor | desktop res | 1    | 2   | 3   | 4   | 5   | 6   | 8   | 10  |
@@ -10,7 +14,6 @@ local gameManager = require "gameManager"
 -- | width        | 1920        | 1920 | 960 | 640 | 480 | 384 | 320 | 240 | 192 |
 -- | height       | 1080        | 1080 | 540 | 360 | 270 | 216 | 180 | 135 | 108 |
 -- +--------------+-------------+------+-----+-----+-----+-----+-----+-----+-----+
-
 local settings = {
     fullscreen = false,
     scaleMuliplier = 3,
@@ -18,7 +21,6 @@ local settings = {
     screenHeight = 180
 }
 
---everything revolving x = ... can be deleted. its just for test/sample purposes
 function love.load()
     --optional settings for window
     love.window.setMode(settings.sceenWidth*settings.scaleMuliplier, settings.screenHeight*settings.scaleMuliplier, {resizable=true, vsync=false, minwidth=200, minheight=200})
@@ -32,19 +34,19 @@ function love.load()
     --font:setFilter('nearest', 'nearest')
 
     love.graphics.setFont(font)
-
+    
+    -- create test sprite
+    --maid = maid64.newImage("maid64.png")
     spr_inLove2d = maid64.newImage("inLove2d_64x64.png")
 
     rotate = 0
-    gameManager.load()
+
+    -- enable key repeat so backspace can be held down to trigger love.keypressed multiple times.
+    love.keyboard.setKeyRepeat(true)
    
 end
-
 function love.update(dt)
-    x = x + 1
     rotate = rotate + dt
-    --print('test' .. x)
-    gameManager.update(dt)
 end
 function love.draw()
     
@@ -54,10 +56,12 @@ function love.draw()
     
     --can also draw shapes and get mouse position
     love.graphics.circle("fill", maid64.mouse.getX(),  maid64.mouse.getY(), 2)
-    --draw x,y cordinates on scren, nice for dev.
-    love.graphics.print(maid64.mouse.getX() .. ',' ..  maid64.mouse.getY(), settings.sceenWidth-(8*7),1)
-    gameManager.draw()
+    love.graphics.print('> ' .. textInput, 0, 226)
+    love.graphics.setFont(font)
+    love.graphics.print('' .. oldText, 0, 226-14-14)
+    love.graphics.print('' .. text, 0, 226-14)
 
+    --love.graphics.draw(spr_inLove2d,sceenWidth/2,screenHeight/2,rotate,3,3,32,32)
     love.graphics.draw(spr_inLove2d, settings.sceenWidth/2, settings.screenHeight/2, rotate, 3, 3, spr_inLove2d:getWidth()/2, spr_inLove2d:getHeight()/2)
 
     maid64.finish()--finishes the maid64 process
@@ -68,8 +72,27 @@ function love.resize(w, h)
     maid64.resize(w, h)
 end
 
+function love.textinput(t)
+    textInput = textInput .. t
+end
+
 function love.keypressed(key)
-   -- toggle fullscreen
+    if key == "backspace" then
+        -- get the byte offset to the last UTF-8 character in the string.
+        local byteoffset = utf8.offset(textInput, -1)
+
+        if byteoffset then
+            -- remove the last UTF-8 character.
+            -- string.sub operates on bytes rather than UTF-8 characters, so we couldn't do string.sub(text, 1, -2).
+            textInput = string.sub(textInput, 1, byteoffset - 1)
+        end
+    end
+    if key == "return" then
+        oldText = text
+        text = textInput
+        textInput = ""
+    end
+    -- toggle fullscreen
     if key == 'f11' then
         if settings.fullscreen == false then
             love.window.setFullscreen(true, "desktop")
