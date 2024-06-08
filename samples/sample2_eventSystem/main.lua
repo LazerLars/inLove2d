@@ -15,5 +15,5 @@ end
 
 function love.draw()
     gameManager.draw()
-    love.graphics.draw(spr_inLove2d, love.graphics.getWidth()/2, love.graphics.getHeight()/2, rotate, 1, 1, spr_inLove2d:getWidth()/2, spr_inLove2d:getHeight()/2)
+    love.graphics.draw(spr_inLove2d, love.graphics.getWidth()/2, love.graphics.getHeight()/2, rotate, 10, 10, spr_inLove2d:getWidth()/2, spr_inLove2d:getHeight()/2)
 end

@@ -42,7 +42,6 @@ function love.load()
 end
 
 function love.update(dt)
-    x = x + 1
     rotate = rotate + dt
     --print('test' .. x)
     gameManager.update(dt)
