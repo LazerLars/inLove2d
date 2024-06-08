@@ -15,10 +15,10 @@ local settings = {
     logicalWidth = 384,
     logicalHeight = 216
 }
+-- global mouse variables to hold correct mouse pos in the scaled world 
+mouse_x, mouse_y = ...
+
 function love.load()
-
-
-    
 
     -- Set up the window with resizable option
     love.window.setMode(settings.logicalWidth, settings.logicalHeight, {resizable=true, vsync=0, minwidth=settings.logicalWidth*settings.screenScaler, minheight=settings.logicalHeight*settings.screenScaler})
@@ -37,41 +37,11 @@ end
 
 function love.update(dt)
     -- Get the current window size
-    windowWidth, windowHeight = love.graphics.getDimensions()
-
-    -- Calculate the scaling factor
-    scaleX = windowWidth / logicalWidth
-    scaleY = windowHeight / logicalHeight
-    scale = math.min(scaleX, scaleY)
-
-    -- Calculate the offsets to center the game
-    offsetX = (windowWidth - logicalWidth * scale) / 2
-    offsetY = (windowHeight - logicalHeight * scale) / 2
-
-    -- Adjust mouse coordinates
-    mouse_x, mouse_y = love.mouse.getPosition()
-    mouse_x = (mouse_x - offsetX) / scale
-    mouse_y = (mouse_y - offsetY) / scale
-    mouse_x = math.floor(mouse_x)
-    mouse_y = math.floor(mouse_y)
-    angle = math.atan2(mouse_y - circle.y, mouse_x - circle.x)
+    calculateMouseOffsets()
 end
 
 
 function love.draw()
-    -- Get the current window size
-    windowWidth, windowHeight = love.graphics.getDimensions()
-
-    -- Calculate the scaling factor
-    scaleX = windowWidth / logicalWidth
-    scaleY = windowHeight / logicalHeight
-    scale = math.min(scaleX, scaleY)
-
-    -- Calculate the offsets to center the game
-    offsetX = (windowWidth - logicalWidth * scale) / 2
-    offsetY = (windowHeight - logicalHeight * scale) / 2
-
-    -- Apply scaling and translation
     love.graphics.push()
     love.graphics.translate(offsetX, offsetY)
     love.graphics.scale(scale, scale)
@@ -80,7 +50,6 @@ function love.draw()
     love.graphics.setColor(1, 1, 1)
     love.graphics.circle("fill", circle.x, circle.y, circle.radius)
     love.graphics.setColor(0.2, 0.8, 0.2)
-    love.graphics.print("angle: " .. angle, 1, 1)
     love.graphics.print("mouse: " .. mouse_x .. "," .. mouse_y, 1, 16)
 
     -- Draw vertical line
@@ -91,4 +60,38 @@ function love.draw()
     love.graphics.line(circle.x, circle.y, mouse_x, mouse_y)
 
     love.graphics.pop()
+end
+
+
+function calculateMouseOffsets()
+    -- Get the current window size
+    windowWidth, windowHeight = love.graphics.getDimensions()
+
+    -- Calculate the current scaling factor
+    scaleX = windowWidth / settings.logicalWidth
+    scaleY = windowHeight / settings.logicalHeight
+    scale = math.min(scaleX, scaleY)
+
+    -- Calculate the offsets to center the game
+    offsetX = (windowWidth - settings.logicalWidth * scale) / 2
+    offsetY = (windowHeight - settings.logicalHeight * scale) / 2
+
+    -- Adjust mouse coordinates
+    mouse_x, mouse_y = love.mouse.getPosition()
+    mouse_x = (mouse_x - offsetX) / scale
+    mouse_y = (mouse_y - offsetY) / scale
+    mouse_x = math.floor(mouse_x)
+    mouse_y = math.floor(mouse_y)
+end
+
+function love.keypressed(key)
+    if key == 'f11' then
+        if settings.fullscreen == false then
+            love.window.setFullscreen(true, "desktop")
+            settings.fullscreen = true
+        else
+            love.window.setMode(settings.logicalWidth, settings.logicalHeight, {resizable=true, vsync=0, minwidth=settings.logicalWidth*settings.screenScaler, minheight=settings.logicalHeight*settings.screenScaler})
+            settings.fullscreen = false
+        end 
+    end
 end
