@@ -6,8 +6,6 @@ function love.load()
     love.graphics.setDefaultFilter("nearest", "nearest")
     rotate = 0
     spr_inLove2d = love.graphics.newImage("inLove2d_64x64.png")
-    print(love.graphics.getWidth())
-    print(love.graphics.getHeight())
 end
 
 function love.update(dt)
