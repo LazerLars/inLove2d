@@ -84,4 +84,15 @@ function love.keypressed(key)
         text = textInput
         textInput = ""
     end
+
+    if key == 'f11' then
+        if settings.fullscreen == false then
+            love.window.setFullscreen(true, "desktop")
+            settings.fullscreen = true
+        else
+            love.window.setMode(settings.sceenWidth*settings.scaleMuliplier, settings.screenHeight*settings.scaleMuliplier, {resizable=true, vsync=false, minwidth=200, minheight=200})
+            maid64.setup(settings.sceenWidth, settings.screenHeight)
+            settings.fullscreen = false
+        end 
+    end
 end
