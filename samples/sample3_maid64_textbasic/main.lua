@@ -10,6 +10,7 @@ local oldText = ""
 
 
 function love.load()
+    love.window.setTitle( 'inLove2D' )
     --optional settings for window
     love.window.setMode(800, 600, {resizable=true, vsync=false, minwidth=200, minheight=200})
     love.graphics.setDefaultFilter("nearest", "nearest")

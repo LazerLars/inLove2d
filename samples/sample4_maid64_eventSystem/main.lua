@@ -20,6 +20,7 @@ local settings = {
 
 --everything revolving x = ... can be deleted. its just for test/sample purposes
 function love.load()
+    love.window.setTitle( 'inLove2D' )
     --optional settings for window
     love.window.setMode(settings.sceenWidth*settings.scaleMuliplier, settings.screenHeight*settings.scaleMuliplier, {resizable=true, vsync=false, minwidth=200, minheight=200})
     love.graphics.setDefaultFilter("nearest", "nearest")

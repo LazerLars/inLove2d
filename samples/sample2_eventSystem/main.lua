@@ -1,6 +1,7 @@
 local gameManager = require "gameManager"
 
 function love.load()
+    love.window.setTitle( 'inLove2D' )
     gameManager.load()
 end
 
