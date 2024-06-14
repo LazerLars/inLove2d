@@ -83,7 +83,9 @@ scaling:
 If you have contributions, please make a pull request ma dudes :)
 
 fonts:
-[m6x11](https://managore.itch.io/m6x11) By [Daniel Lissen](https://twitter.com/managore)
+[m6x11](https://managore.itch.io/m6x11) By [Daniel Lissen](https://twitter.com/managore)  
+  
+[PixloidSans](https://ggbot.itch.io/pixeloid-font)
 
 
 ![inLove2D logo](/img/documentation/inLove2d_160x160.png)

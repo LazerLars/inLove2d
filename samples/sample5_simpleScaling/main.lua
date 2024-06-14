@@ -11,9 +11,9 @@ end
 -- +--------------+-------------+------+-----+-----+-----+-----+-----+-----+-----+
 local settings = {
     fullscreen = false,
-    screenScaler = 3,
-    logicalWidth = 384,
-    logicalHeight = 216
+    screenScaler = 2,
+    logicalWidth = 640,
+    logicalHeight = 360
 }
 -- global mouse variables to hold correct mouse pos in the scaled world 
 mouse_x, mouse_y = ...
@@ -22,14 +22,19 @@ function love.load()
     love.window.setTitle( 'inLove2D' )
     -- Set up the window with resizable option
     love.window.setMode(settings.logicalWidth, settings.logicalHeight, {resizable=true, vsync=0, minwidth=settings.logicalWidth*settings.screenScaler, minheight=settings.logicalHeight*settings.screenScaler})
-    font = love.graphics.newFont('fonts/m6x11.ttf', 16)
+    -- font = love.graphics.newFont('fonts/m6x11.ttf', 16)
+    -- font = love.graphics.newFont('fonts/PressStart2P-Regular.ttf', 16)
+    -- https://ggbot.itch.io/pixeloid-font
+    -- pixeloid sizes: 9, 18, 36, 72, 144
+    font = love.graphics.newFont('fonts/PixeloidMono.ttf', 9)
+    
     
     love.graphics.setFont(font)
     -- love.graphics.setDefaultFilter("nearest", "nearest")
 
     circle = {}
-    circle.x = 100
-    circle.y = 100
+    circle.x = settings.logicalWidth / 2
+    circle.y = settings.logicalHeight / 2
     circle.radius = 25
     circle.speed = 200
 end
@@ -50,6 +55,11 @@ function love.draw()
     -- print mouse cordinates
     love.graphics.setColor(1, 1, 1)
     love.graphics.print("mouse: " .. mouse_x .. "," .. mouse_y, 1, 1)
+    font = love.graphics.newFont('fonts/PixeloidMono.ttf', 18)
+    love.graphics.setFont(font)
+    love.graphics.print("mouse: " .. mouse_x .. "," .. mouse_y, 1, 20)
+    font = love.graphics.newFont('fonts/PixeloidMono.ttf', 9)
+    love.graphics.setFont(font)
 
     sampleDrawCode()
     love.graphics.pop()
@@ -103,5 +113,7 @@ function sampleDrawCode()
     love.graphics.line(circle.x, circle.y, circle.x, mouse_y)
     -- Draw kune tiwards the mouse
     love.graphics.line(circle.x, circle.y, mouse_x, mouse_y)
+
+    love.graphics.rectangle('line', settings.logicalWidth/2, settings.logicalHeight/2, 16,16)
 end
 
