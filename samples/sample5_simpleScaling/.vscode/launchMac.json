@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+    {
+    "type": "lua-local",
+    "request": "launch",
+    "name": "Debug",
+    "program": {	
+    "command": "/Users/mlv/loveGames/love.app/Contents/MacOS/love"
+    },
+    "args": [
+    ".",
+    "debug"
+    ],
+    },
+    {
+    "type": "lua-local",
+    "request": "launch",
+    "name": "Release",
+    "program": {
+    "command": "/Users/mlv/loveGames/love.app/Contents/MacOS/love"
+    },
+    "args": [
+    ".",
+    ],
+    }
+    ]
+    }
+    
