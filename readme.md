@@ -75,7 +75,59 @@ if arg[2] == "debug" then
 end
 ```
 
+## Build your game as HTML with loveJS
+Script provided by:
+All credits goes to abhimonk for the script!
+Script provided by https://itch.io/profile/abhimonk via comment @ https://itch.io/post/10552214 itch page: https://abhimonk.itch.io/ x page: https://x.com/abhisundu
 
+1. Place love_web_build.bat in your project folder
+2. Install node.JS on your system:
+   1. Open your terminal write::
+   ```bat
+    Winget install -e --id OpenJS.NodeJS
+    ```
+3. Install love.JS -> https://github.com/Davidobot/love.js/
+   1. Open your terminal:
+  ```bat
+  npm i love.js
+  ```
+4. Install 7zip:
+   1. Open terminal
+  ```bat
+  winget install -e --id 7zip.7zip
+  ```
+5. Edit the script file "love_web_build.bat": modify folders/files in the part 
+   ```bat
+   "....zipping up all files into %buildName%.zip"
+   ```
+   Ideally you put your main.lua in the root of your project and then you make everything else in a sub folder named src. Then you only need to include "src" "main.lua"
+   ```bat
+   echo zipping up all files into %buildName%.zip "C:\Program Files\7-Zip\7z.exe" a %buildFolder%/%buildName%/%buildName%.zip "src" "main.lua"
+   ```
+   it could also look like one of my projects:
+   ```bat
+   echo zipping up all files into %buildName%.zip "C:\Program Files\7-Zip\7z.exe" a %buildFolder%/%buildName%/%buildName%.zip "fonts" "sfx" "sprites" "UtillityFunctions" "collision.lua" "conf.lua" "enemy.lua" "event.lua" "gameManager.lua" "inputManager.lua" "maid64.lua" "maid64.png" "main.lua" "player.lua" "sfxManager.lua" "weapon.lua"
+    ```
+
+6. Double click the love_web_build.bat
+   1. Enter the buildName when promted
+   2. Enter the gameName when promted  
+   3. ...Then the script will create a build folder in your project
+   
+7. Upload your game to itch.io
+   1. upload your .zip file to itch from the build folder, and mark is file to be played as html, and then add "x" in SharedBufferArraryExport
+
+8. Or test locally with a python webserver
+   1. cd to the build folder and open the folder which are not zipped ![](img/documentation/web_build_locally_00_.jpg)
+   2.  start python server (source: https://github.com/Davidobot/love.js/ under section: Test it)
+        ```bat
+        python -m http.server 8000
+        ```
+        ![](img/documentation/web_build_locally_01_web_build_start_python_server.jpg)
+   3. Open any browser and go to: localhost:8000
+    ![](img/documentation/web_build_locally_02_open_browser.jpg)  
+    Now you can play your game locally
+    
 ## Package dependencies/references in this projects
 scaling:  
 [maid64](https://github.com/adekto/maid64)
@@ -86,6 +138,5 @@ fonts:
 [m6x11](https://managore.itch.io/m6x11) By [Daniel Lissen](https://twitter.com/managore)  
   
 [PixloidSans](https://ggbot.itch.io/pixeloid-font)
-
 
 ![inLove2D logo](/img/documentation/inLove2d_160x160.png)
