@@ -117,6 +117,17 @@ Script provided by https://itch.io/profile/abhimonk via comment @ https://itch.i
 7. Upload your game to itch.io
    1. upload your .zip file to itch from the build folder, and mark is file to be played as html, and then add "x" in SharedBufferArraryExport
 
+8. Or test locally with a python webserver
+   1. cd to the build folder and open the folder which are not zipped ![](img/documentation/web_build_locally_00_.jpg)
+   2.  start python server (source: https://github.com/Davidobot/love.js/ under section: Test it)
+        ```bat
+        python -m http.server 8000
+        ```
+        ![](img/documentation/web_build_locally_01_web_build_start_python_server.jpg)
+   3. Open any browser and go to: localhost:8000
+    ![](img/documentation/web_build_locally_02_open_browser.jpg)  
+    Now you can play your game locally
+    
 ## Package dependencies/references in this projects
 scaling:  
 [maid64](https://github.com/adekto/maid64)
