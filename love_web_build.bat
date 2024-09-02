@@ -33,7 +33,7 @@ mkdir %buildFolder%\%buildName%
 
 @REM this you need to include all your folders from your repo and all files in the root in the below lines. Forget .gitignore, .vscode, .readme or similar files irrelevant to love
 echo zipping up all files into %buildName%.zip
-"C:\Program Files\7-Zip\7z.exe" a %buildFolder%/%buildName%/%buildName%.zip "fonts" "sfx" "sprites" "UtillityFunctions" "collision.lua" "conf.lua" "enemy.lua" "event.lua" "gameManager.lua" "inputManager.lua" "maid64.lua" "maid64.png" "main.lua" "player.lua" "sfxManager.lua" "weapon.lua"
+"C:\Program Files\7-Zip\7z.exe" a %buildFolder%/%buildName%/%buildName%.zip "src" "main.lua"
 
 echo renaming zip file to love file
 rename %buildFolder%\%buildName%\%buildName%.zip %buildName%.love
