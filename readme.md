@@ -75,6 +75,20 @@ if arg[2] == "debug" then
 end
 ```
 
+## Buld your game to a .exe file
+Make .exe file  
+https://love2d.org/wiki/Game_Distribution  
+
+1) Add love.exe to your repo  
+2) Zip all files your project  
+3) Rename filename.zip to -> .love  
+4) Open dir in cmd and run command:  
+4.1) copy /b love.exe+yourGameFileName.love theNameOfYourExeFileForYourGame.exe  
+OR if cmd dont work directly with that command try in powershell, that often does the trick then  
+x) Or open powershell and run command:  
+x) cmd /c "copy /b love.exe+yourGameFileName.love theNameOfYourExeFileForYourGame.exe"
+
+
 ## Build your game as HTML with loveJS
 Script provided by:
 All credits goes to abhimonk for the script!
