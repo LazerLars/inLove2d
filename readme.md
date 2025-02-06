@@ -75,7 +75,7 @@ if arg[2] == "debug" then
 end
 ```
 
-## Buld your game to a .exe file
+## Build your game to a .exe file
 Make .exe file  
 https://love2d.org/wiki/Game_Distribution  
 
